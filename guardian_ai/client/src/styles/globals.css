@@ -1,0 +1,48 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #0f1117;
+  color: #e2e8f0;
+}
+
+.layout { display: flex; flex-direction: column; min-height: 100vh; }
+.layout-body { display: flex; flex: 1; }
+
+.navbar {
+  background: #1a1d2e;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #2d3748;
+}
+
+.sidebar {
+  width: 220px;
+  background: #141722;
+  padding: 2rem 1rem;
+  border-right: 1px solid #2d3748;
+}
+
+.sidebar ul { list-style: none; }
+.sidebar li { margin-bottom: 1rem; }
+.sidebar a { color: #a0aec0; text-decoration: none; }
+.sidebar a:hover { color: #63b3ed; }
+
+.main-content { flex: 1; padding: 2rem; }
+
+.attack-alert {
+  background: #742a2a;
+  border: 1px solid #fc8181;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.loader { color: #63b3ed; font-style: italic; }
+
+.result-card {
+  background: #1a1d2e;
+  border: 1px solid #2d3748;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}

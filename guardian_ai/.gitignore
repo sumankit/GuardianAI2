@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Models (too large for git — use Git LFS or HuggingFace Hub)
+server/models/detector_model/*
+server/models/embedding_model/*
+!server/models/detector_model/.gitkeep
+!server/models/embedding_model/.gitkeep
+
+# Logs
+server/logs/*.log
+
+# OS
+.DS_Store
+Thumbs.db
