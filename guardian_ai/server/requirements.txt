@@ -11,3 +11,27 @@ pandas>=2.1.0
 numpy>=1.26.0
 python-socketio>=5.10.0
 aiofiles>=23.2.0
+# GuardianAI — Server Requirements
+# Install with: pip install -r requirements.txt
+
+# ── Web framework ──────────────────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-multipart==0.0.9
+pydantic==2.7.4
+
+# ── Your detector agent ────────────────────────────────────────────────────
+torch                         # CPU version — fine for inference
+transformers==4.41.2          # AutoTokenizer + AutoModelForSequenceClassification
+
+# ── Your RAG agent ─────────────────────────────────────────────────────────
+faiss-cpu==1.8.0
+sentence-transformers==3.0.1
+numpy==1.26.4
+
+# ── Your sanitizer+explainer agent ────────────────────────────────────────
+groq==0.9.0                   # Groq SDK for llama-3.1-8b-instant
+
+# ── Utilities ──────────────────────────────────────────────────────────────
+python-dotenv==1.0.1
+aiofiles==23.2.1

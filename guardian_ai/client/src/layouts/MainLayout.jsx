@@ -1,15 +1,9 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import { Outlet } from "react-router-dom";
 
-const MainLayout = ({ children }) => (
-  <div className="layout">
-    <Navbar />
-    <div className="layout-body">
-      <Sidebar />
-      <main className="main-content">{children}</main>
-    </div>
-  </div>
-);
-
-export default MainLayout;
+export default function MainLayout() {
+  return (
+    <main className="pt-20">
+      <Outlet />
+    </main>
+  );
+}

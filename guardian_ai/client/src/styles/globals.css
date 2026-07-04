@@ -1,48 +1,39 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: "Segoe UI", sans-serif;
-  background: #0f1117;
-  color: #e2e8f0;
+  @apply bg-black text-white antialiased text-sm;
+  font-family: "Poppins", sans-serif;
 }
 
-.layout { display: flex; flex-direction: column; min-height: 100vh; }
-.layout-body { display: flex; flex: 1; }
-
-.navbar {
-  background: #1a1d2e;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #2d3748;
+body::selection {
+  @apply bg-pink-600 text-white;
 }
 
-.sidebar {
-  width: 220px;
-  background: #141722;
-  padding: 2rem 1rem;
-  border-right: 1px solid #2d3748;
+button {
+  @apply cursor-pointer;
 }
 
-.sidebar ul { list-style: none; }
-.sidebar li { margin-bottom: 1rem; }
-.sidebar a { color: #a0aec0; text-decoration: none; }
-.sidebar a:hover { color: #63b3ed; }
-
-.main-content { flex: 1; padding: 2rem; }
-
-.attack-alert {
-  background: #742a2a;
-  border: 1px solid #fc8181;
-  padding: 1rem;
-  border-radius: 6px;
-  margin-bottom: 1rem;
+.move-gradient {
+  background-image: linear-gradient(to right, #ec4899, #f9a8d4);
+  background-size: 200% 100%;
+  animation: movegradient 5s infinite;
 }
 
-.loader { color: #63b3ed; font-style: italic; }
+@keyframes movegradient {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
 
-.result-card {
-  background: #1a1d2e;
-  border: 1px solid #2d3748;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 1rem;
+.glass-card {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+.soft-shadow {
+  box-shadow: 0 24px 80px rgba(236, 72, 153, 0.14);
 }

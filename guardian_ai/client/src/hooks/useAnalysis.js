@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { analysePrompt } from "../services/api";
+// hooks/useAnalytics.js
+import { useState, useEffect } from "react";
+import { getAnalytics } from "../services/api";
+import { useAuthContext } from "../context/AuthContext";
 
-const useAnalysis = () => {
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export function useAnalytics() {
+  const { getAuthToken, isSignedIn } = useAuthContext();
+  const [data,    setData]    = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error,   setError]   = useState(null);
 
-  const analyse = async (prompt) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await analysePrompt(prompt);
-      setResult(res.data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    if (!isSignedIn) return;
+    (async () => {
+      try {
+        const token = await getAuthToken();
+        setData(await getAnalytics(token));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [isSignedIn]);
 
-  return { result, loading, error, analyse };
-};
-
-export default useAnalysis;
+  return { data, loading, error };
+}

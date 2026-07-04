@@ -1,18 +1,57 @@
+"""
+GuardianAI — Logger
+Colored console output + rotating file logs.
+"""
+
 import logging
+import os
 from pathlib import Path
 
-LOG_PATH = Path(__file__).parent.parent / "logs" / "attacks.log"
+import colorlog
 
-def setup_logger(name: str = "guardian_ai") -> logging.Logger:
-    LOG_PATH.parent.mkdir(exist_ok=True)
+
+def setup_logger(name: str = "guardianai", log_level: str = "INFO", log_file: str = "logs/guardianai.log") -> logging.Logger:
+    Path(log_file).parent.mkdir(parents=True, exist_ok=True)
+
     logger = logging.getLogger(name)
-    if not logger.handlers:
-        logger.setLevel(logging.INFO)
-        fh = logging.FileHandler(LOG_PATH)
-        ch = logging.StreamHandler()
-        fmt = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
-        fh.setFormatter(fmt)
-        ch.setFormatter(fmt)
-        logger.addHandler(fh)
-        logger.addHandler(ch)
+    logger.setLevel(getattr(logging, log_level.upper(), logging.INFO))
+
+    if logger.handlers:
+        return logger
+
+    # ── Console handler (colored) ──────────────────────────────
+    console_handler = colorlog.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)
+    console_handler.setFormatter(
+        colorlog.ColoredFormatter(
+            "%(log_color)s[%(asctime)s] %(levelname)-8s%(reset)s %(name)s | %(message)s",
+            datefmt="%H:%M:%S",
+            log_colors={
+                "DEBUG": "cyan",
+                "INFO": "green",
+                "WARNING": "yellow",
+                "ERROR": "red",
+                "CRITICAL": "bold_red",
+            },
+        )
+    )
+
+    # ── File handler ───────────────────────────────────────────
+    file_handler = logging.FileHandler(log_file, encoding="utf-8")
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(
+        logging.Formatter(
+            "[%(asctime)s] %(levelname)-8s %(name)s | %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S",
+        )
+    )
+
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+    logger.propagate = False
+
     return logger
+
+
+# Module-level logger used across the app
+logger = setup_logger()

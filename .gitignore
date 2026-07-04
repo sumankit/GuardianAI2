@@ -1,0 +1,66 @@
+# ────────────────────────────────────────────────────────
+# Python
+# ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Python packaging
+*.egg-info/
+build/
+dist/
+guardian_ai/server/models/
+
+# ────────────────────────────────────────────────────────
+# Node / Frontend
+# ────────────────────────────────────────────────────────
+node_modules/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Frontend build output
+client/dist/
+
+# ────────────────────────────────────────────────────────
+# ML Models (Large Files)
+# Use Git LFS or HuggingFace Hub instead
+# ────────────────────────────────────────────────────────
+server/models/detector_model/*
+server/models/embedding_model/*
+
+# Keep empty folders tracked
+!server/models/detector_model/.gitkeep
+!server/models/embedding_model/.gitkeep
+
+# ────────────────────────────────────────────────────────
+# Logs
+# ────────────────────────────────────────────────────────
+server/logs/*.log
+*.log
+
+# ────────────────────────────────────────────────────────
+# IDE / Editor
+# ────────────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ────────────────────────────────────────────────────────
+# OS Files
+# ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
